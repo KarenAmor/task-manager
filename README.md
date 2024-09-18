@@ -38,6 +38,7 @@ No se requiere configuración adicional. La aplicación usa la configuración pr
     ```
 
     El servidor se iniciará en `http://localhost:3000`.
+    Acceder a la documentación en `http://localhost:3000/api`.
 
 2. **Endpoints disponibles:**
 

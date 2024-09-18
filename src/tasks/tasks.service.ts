@@ -13,8 +13,12 @@ export class TasksService {
     private tasksRepository: Repository<Task>,
   ) {}
 
-  async findAll(): Promise<Task[]> {
-    return this.tasksRepository.find();
+  async findAll(paginationOptions: { skip: number; take: number }): Promise<Task[]> {
+    const { skip, take } = paginationOptions;
+    return this.tasksRepository.find({
+      skip,
+      take,
+    });
   }
 
   async findOne(id: number): Promise<Task> {
