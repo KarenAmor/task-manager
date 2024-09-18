@@ -1,85 +1,145 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# Task Management API
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+## Descripción
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+Esta es una API para la gestión de tareas construida con NestJS. La API permite crear, leer, actualizar y eliminar tareas, y valida los datos de entrada utilizando `class-validator`.
 
-## Description
+## Tecnologías Utilizadas
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+- [NestJS](https://nestjs.com/) - Framework para construir aplicaciones de servidor eficientes y escalables en Node.js.
+- [class-validator](https://github.com/typestack/class-validator) - Librería para validación de clases en TypeScript.
+- [class-transformer](https://github.com/typestack/class-transformer) - Librería para transformar objetos y clases en TypeScript.
 
-## Project setup
+## Instalación
 
-```bash
-$ npm install
-```
+1. **Clona el repositorio:**
 
-## Compile and run the project
+    ```bash
+    git clone https://github.com/tu-usuario/task-management-api.git
+    cd task-management-api
+    ```
 
-```bash
-# development
-$ npm run start
+2. **Instala las dependencias:**
 
-# watch mode
-$ npm run start:dev
+    ```bash
+    npm install
+    ```
 
-# production mode
-$ npm run start:prod
-```
+## Configuración
 
-## Run tests
+No se requiere configuración adicional. La aplicación usa la configuración predeterminada de NestJS.
 
-```bash
-# unit tests
-$ npm run test
+## Uso
 
-# e2e tests
-$ npm run test:e2e
+1. **Inicia el servidor:**
 
-# test coverage
-$ npm run test:cov
-```
+    ```bash
+    npm run start
+    ```
 
-## Resources
+    El servidor se iniciará en `http://localhost:3000`.
 
-Check out a few resources that may come in handy when working with NestJS:
+2. **Endpoints disponibles:**
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+    - **GET /tasks**
+      
+      Obtiene la lista de todas las tareas.
 
-## Support
+      **Respuesta exitosa:**
+      ```json
+      [
+        {
+          "id": "string",
+          "title": "string",
+          "description": "string",
+          "status": "string"
+        }
+      ]
+      ```
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+    - **POST /tasks**
+      
+      Crea una nueva tarea.
 
-## Stay in touch
+      **Cuerpo de la solicitud:**
+      ```json
+      {
+        "title": "string",
+        "description": "string",
+        "status": "string"  // Opcional, puede ser 'open', 'in_progress', o 'done'
+      }
+      ```
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+      **Respuesta exitosa:**
+      ```json
+      {
+        "id": "string",
+        "title": "string",
+        "description": "string",
+        "status": "string"
+      }
+      ```
 
-## License
+    - **GET /tasks/:id**
+      
+      Obtiene una tarea específica por su ID.
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+      **Respuesta exitosa:**
+      ```json
+      {
+        "id": "string",
+        "title": "string",
+        "description": "string",
+        "status": "string"
+      }
+      ```
+
+    - **PUT /tasks/:id**
+      
+      Actualiza una tarea existente por su ID.
+
+      **Cuerpo de la solicitud:**
+      ```json
+      {
+        "title": "string",
+        "description": "string",
+        "status": "string"  // Opcional, puede ser 'open', 'in_progress', o 'done'
+      }
+      ```
+
+      **Respuesta exitosa:**
+      ```json
+      {
+        "id": "string",
+        "title": "string",
+        "description": "string",
+        "status": "string"
+      }
+      ```
+
+    - **DELETE /tasks/:id**
+      
+      Elimina una tarea específica por su ID.
+
+      **Respuesta exitosa:**
+      ```json
+      {
+        "message": "Task deleted successfully"
+      }
+      ```
+
+## Validaciones
+
+La API utiliza `class-validator` para asegurar que los datos entrantes cumplan con los requisitos definidos en los DTOs. Los errores de validación se devuelven como errores 400 con detalles sobre las validaciones fallidas.
+
+## Contribuciones
+
+Si deseas contribuir a este proyecto, por favor realiza un fork del repositorio, realiza tus cambios y envía un pull request.
+
+## Licencia
+
+Este proyecto está bajo la [Licencia MIT](LICENSE).
+
+## Contacto
+
+Para cualquier pregunta, por favor contacta a [karedimor@gmail.com](mailto:tu-email@dominio.com).
