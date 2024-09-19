@@ -38,7 +38,6 @@ export class TasksController {
     return this.tasksService.findOne(id);
   }
 
-  @UseGuards(JwtAuthGuard)
   @Post()
   create(@Body() createTaskDto: CreateTaskDto): Promise<Task> {
     return this.tasksService.create(createTaskDto);
