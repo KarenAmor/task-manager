@@ -9,9 +9,10 @@ import {
   ParseIntPipe,
   UsePipes,
   ValidationPipe,
-  Query
+  Query,
+  UseGuards
 } from '@nestjs/common';
-
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { TasksService } from './tasks.service';
 import { Task } from './task.entity';
 import { CreateTaskDto } from './dto/create-task.dto';
@@ -37,6 +38,7 @@ export class TasksController {
     return this.tasksService.findOne(id);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Post()
   create(@Body() createTaskDto: CreateTaskDto): Promise<Task> {
     return this.tasksService.create(createTaskDto);
