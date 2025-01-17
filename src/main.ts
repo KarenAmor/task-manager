@@ -2,10 +2,18 @@ import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { NestFactory } from '@nestjs/core';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
+ // Habilitar CORS
+  app.enableCors({
+    origin: 'http://localhost:3000', // Permitir solicitudes desde este origen
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE', // Métodos permitidos
+    credentials: true, // Permitir cookies
+  });
+  
   // Configuración de Swagger
   const config = new DocumentBuilder()
     .setTitle('Task Manager API')
