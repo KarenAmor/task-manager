@@ -20,10 +20,13 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     console.log('Payload JWT recibido:', payload);
     const user = await this.usersService.findOneByUsername(payload.username);
     console.log('Usuario encontrado:', user);
+
     if (!user) {
-      throw new UnauthorizedException();
+      console.error('Usuario no encontrado para el payload:', payload); // Log de error
+      throw new UnauthorizedException('Usuario no autorizado');
     }
-    const { password, ...result } = user;
-    return result;
+    
+    
+    return {...user, sub: payload.sub};
   }
 }
